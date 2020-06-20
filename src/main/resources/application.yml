@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+    application:
+      name: uid-generator
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
