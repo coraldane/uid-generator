@@ -30,7 +30,7 @@ public class CachedUidGeneratorTest {
     private static final int SIZE = 7000000; // 700w
     private static final boolean VERBOSE = false;
     private static final int THREADS = Runtime.getRuntime().availableProcessors() << 1;
-
+    
     @Resource
     private UidGenerator uidGenerator;
 
@@ -126,4 +126,38 @@ public class CachedUidGeneratorTest {
         Assert.assertEquals(SIZE, uidSet.size());
     }
 
+    @Test
+    public void testIntGenerate() throws IOException {
+        // Generate UID serially
+        Set<Integer> uidSet = new HashSet<>(SIZE);
+        for (int i = 0; i < SIZE; i++) {
+        	doIntGenerate(uidSet, i);
+        }
+        
+        // Check UIDs are all unique
+        checkIntUniqueID(uidSet);
+    }
+    
+    private void doIntGenerate(Set<Integer> uidSet, int index) {
+        long uid = uidGenerator.getUID();
+        String parsedInfo = uidGenerator.parseUID(uid);
+        boolean existed = !uidSet.add((int)uid % Integer.MAX_VALUE);
+        if (existed) {
+            System.out.println("Found duplicate UID " + uid);
+        }
+
+        // Check UID is positive, and can be parsed
+        Assert.assertTrue(uid > 0L);
+        Assert.assertTrue(StringUtils.isNotBlank(parsedInfo));
+
+        if (VERBOSE) {
+            System.out.println(Thread.currentThread().getName() + " No." + index + " >>> " + parsedInfo);
+        }
+    }
+    
+    private void checkIntUniqueID(Set<Integer> uidSet) throws IOException {
+        System.out.println(uidSet.size());
+        Assert.assertEquals(SIZE, uidSet.size());
+    }
+    
 }

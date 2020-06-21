@@ -3,19 +3,21 @@ package com.liutian.tools.controller;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baidu.fsg.uid.UidGenerator;
 
 @RestController
+@RequestMapping(value="/uid")
 public class UidController {
 	
 	@Resource(name = "defaultUidGenerator")
-    private UidGenerator uidGenerator;
+    private UidGenerator defaultUidGenerator;
 	
-    @GetMapping("/uidGenerator")
-    public String UidGenerator() {
-        return String.valueOf(this.uidGenerator.getUID());
+    @GetMapping("/generate")
+    public String generate() {
+        return String.valueOf(this.defaultUidGenerator.getUID());
     }
     
 }

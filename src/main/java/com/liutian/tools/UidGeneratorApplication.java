@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ImportResource;
 @MapperScan("com.baidu.fsg.uid")
 @ImportResource(locations = { "classpath:uid/default-uid-spring.xml" })
 public class UidGeneratorApplication {
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(UidGeneratorApplication.class, args);
 	}
