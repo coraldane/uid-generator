@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sankuai.inf.leaf.segment.dao.IDAllocDao">
+	
+    <resultMap id="resultMap" type="com.sankuai.inf.leaf.segment.model.LeafAlloc">
+        <result column="biz_tag" jdbcType="VARCHAR" property="key" />
+        <result column="max_id" jdbcType="BIGINT" property="maxId" />
+        <result column="step" jdbcType="INTEGER" property="step" />
+        <result column="update_time" jdbcType="DATE" property="updateTime" />
+    </resultMap>
+
+    <select id="getAllLeafAllocs" resultMap="resultMap">
+		SELECT biz_tag, max_id, step, update_time FROM leaf_alloc
+	</select>
+	
+	<select id="getLeafAlloc" resultMap="resultMap">
+		SELECT biz_tag, max_id, step FROM leaf_alloc WHERE biz_tag = #{tag}
+	</select>
+	
+	<update id="updateMaxId" parameterType="java.lang.String">
+		UPDATE leaf_alloc SET max_id = max_id + step WHERE biz_tag = #{tag}
+	</update>
+	
+	<update id="updateMaxIdByCustomStep">
+		UPDATE leaf_alloc SET max_id = max_id + #{step} WHERE biz_tag = #{key}
+	</update>
+	
+	<select id="getAllTags" resultType="java.lang.String">
+		SELECT biz_tag FROM leaf_alloc
+	</select>
+</mapper>

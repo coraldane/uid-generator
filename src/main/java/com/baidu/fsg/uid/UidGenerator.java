@@ -26,7 +26,6 @@ public interface UidGenerator {
 
     /**
      * Get a unique ID
-     *
      * @return UID
      * @throws UidGenerateException
      */
