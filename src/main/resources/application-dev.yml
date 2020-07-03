@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/uid?characterEncoding=UTF-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true
-    username: root
-    password: toor
+    url: jdbc:mysql://localhost:3306/uid?characterEncoding=UTF-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true&allowPublicKeyRetrieval=true
+    username: super
+    password: w3R@video
     hikari:
       auto-commit: true
       minimum-idle: 5

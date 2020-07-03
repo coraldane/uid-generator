@@ -14,7 +14,7 @@ public interface IDAllocDao {
 
      void updateMaxId(@Param("tag") String tag);
 
-     void updateMaxIdByCustomStep(@Param("leafAlloc") LeafAlloc leafAlloc);
-
+     void updateMaxIdByCustomStep(LeafAlloc leafAlloc);
+     
      List<String> getAllTags();
 }
